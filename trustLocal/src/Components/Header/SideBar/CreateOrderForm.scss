@@ -1,0 +1,174 @@
+.create-offer-dialog {
+  border-radius: 20px !important;
+  transition: all 0.3s ease;
+
+  &.full-screen {
+    height: calc(100vh - 60px);
+    margin-top: auto;
+  }
+}
+
+.create-offer-header {
+  display: flex;
+  padding: 0px 8px;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 10px;
+  background-color: var(--color-offer-background-light);
+  border-bottom: 1px solid #ccc;
+
+  &.dark-mode {
+    background-color: var(--color-offer-background-dark);
+    color: #cacccc;
+  }
+}
+
+.create-offer-close-button {
+  &.dark-mode {
+    color: #cacccc;
+  }
+}
+
+.create-offer-footer {
+  background-color: var(--color-offer-background-light);
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #ccc;
+
+  &.dark-mode {
+    background-color: var(--color-offer-background-dark);
+  }
+}
+
+.create-offer-content {
+  padding: 16px 20px;
+  height: 400px;
+  background-color: white;
+
+  & input {
+    color: #868686;
+  }
+
+  &.dark-mode {
+    background-color: var(--color-offer-background-dark);
+  }
+}
+
+.form-container {
+  padding: 16px;
+}
+
+
+.form-item {
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+.input-field {
+  .MuiOutlinedInput-root {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border-color: var(--color-accent);
+    }
+
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 8px rgba(231, 76, 60, 0.2);
+    }
+  }
+
+  &.dark-mode {
+    .MuiInputLabel-root {
+      color: var(--color-text);
+    }
+    
+    .MuiOutlinedInput-root {
+      background: var(--color-offer-background-dark);
+      
+      .MuiOutlinedInput-input {
+        color: var(--color-text);
+      }
+      
+      .MuiOutlinedInput-notchedOutline {
+        border-color: var(--color-primary-light);
+      }
+    }
+  }
+}
+
+.fancy-textarea {
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  color: var(--color-text-dark);
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 12px rgba(231, 76, 60, 0.2);
+  }
+
+  &.dark-mode {
+    background: var(--color-offer-background-dark);
+    border-color: var(--color-primary-light);
+    color: var(--color-text);
+  }
+}
+
+.invoice-switch {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  padding: 10px;
+
+  .invoice-switch-label {
+    margin-right: 10px;
+  }
+
+  &.dark-mode{
+    color: rgb(211, 211, 211);
+  }
+}
+
+.dialog-actions {
+  padding: 20px !important;
+  gap: 1rem;
+  
+  &.dark-mode {
+    background: var(--color-primary-dark);
+  }
+}
+
+.cancel-btn {
+  color: var(--color-text-dark) !important;
+  border-radius: 8px;
+  padding: 8px 20px;
+  
+  .dark-mode & {
+    color: var(--color-text) !important;
+  }
+}
+
+.submit-btn {
+  background: linear-gradient(45deg, var(--color-accent), var(--color-accent-light)) !important;
+  color: white !important;
+  border-radius: 8px !important;
+  padding: 8px 30px !important;
+  transition: transform 0.2s ease !important;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  &.dark-mode {
+    background: linear-gradient(45deg, var(--color-accent-dark), var(--color-accent)) !important;
+    box-shadow: 0 2px 10px rgba(44, 62, 80, 0.4);
+  }
+}

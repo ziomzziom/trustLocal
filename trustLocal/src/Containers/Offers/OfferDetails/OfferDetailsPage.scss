@@ -1,0 +1,25 @@
+.details-container {
+  display: flex;
+  background-color: white;
+  transition: background-color 0.3s ease;
+  
+  &.dark-mode{
+    background-color: var(--color-offerlist-background-dark);
+    transition: background-color 0.3s ease;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .details-container {
+    height: calc(100vh - 60px);
+  }
+
+  .left-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .right-container {
+    display: none;
+  }
+}

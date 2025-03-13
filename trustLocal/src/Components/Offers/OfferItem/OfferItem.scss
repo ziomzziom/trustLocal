@@ -1,0 +1,259 @@
+.offer-item {
+  background-color: var(--color-offer-background-light);
+  text-decoration: none;
+  color: var(--color-text-dark);
+  font-size: 16px;
+  font-family: Open Sans,sans-serif;
+  margin-bottom: 8px;
+  height: 66px;
+  padding: 7px 10px 7px 10px;
+  box-shadow: 0px 1px 2px 0px rgba(0 ,0, 0, 0.06), 0px 1px 3px 0px rgba(0 ,0, 0, 0.1);
+  width: calc(100% - 30px);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: background-color, box-shadow 0.3s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.25);
+  }
+}
+.offer-item-isactive {
+  display: flex;
+  width: 6px;
+  height: 80px;
+  margin-left: -10px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  margin-right: 5px;
+}
+
+.offer-item-isactive.active {
+  background-color: rgb(76, 187, 76); 
+}
+
+.offer-item-isactive.inactive {
+  background-color: rgb(182, 68, 68);
+}
+
+.offer-item-price{
+  margin-right: 15px;
+  font-weight: bold;
+  color:  #008a00;
+  // color:  #228B22;
+
+  &.dark-mode{
+    color:  #228B22;
+  }
+}
+
+// Dark Mode
+.offer-item.dark-mode{
+  background-color: var(--color-offer-background-dark);
+  color: var(--color-tag-text-light);
+  transition: background-color 0.3s ease;
+}
+
+.offer-item-title.dark-mode{
+  color: var(--color-tag-text-light);
+}
+
+.offer-item-date.dark-mode{
+  color: var(--color-tag-text-light);
+}
+
+.tag.new.dark-mode{
+  border: 2px solid #a5a5a5;
+}
+// Dark Mode
+
+.offer-item-location{
+  display: flex;
+  align-items: center;
+}
+
+.offer-item-location-content{
+  font-size: 15px;
+}
+
+.offer-item-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  margin-top: 5px; 
+}
+
+.offer-item-content-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 10px;
+  height: 70px;
+}
+
+.offer-item-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.offer-item-content-one {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.offer-item-content-two {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 3px;
+  font-size: 12px;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.time-icon-wrapper{
+  display: flex;
+  align-items: center;
+}
+
+.offer-item-date-wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  margin-left: 1px;
+}
+
+.offer-item-date {
+  display: flex;
+  align-items: center;
+}
+
+.date-value{
+  font-size: 12px;
+  margin-left: 3px;
+}
+
+.offer-item-details {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  justify-content: space-between;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.offer-item-title-container{
+  display: flex;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.offer-item-title {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-left: 3px;
+  color: var(--color-text-dark);
+
+  .verified-icon{
+    margin-left: 5px;
+  }
+}
+
+.offer-item-date {
+  display: flex;
+  justify-content: flex-start;
+  color: var(--color-text-dark);
+}
+
+.offer-item-info {
+  display: flex;
+  align-items: center;
+}
+
+.tag.new {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--color-tag-text-dark);
+  border: 2px solid #70747a;
+  border-radius: 20px;
+  padding: 4px 12px;
+}
+
+.offer-item-date-location-wrapper{
+  display: flex;
+}
+.offer-item-invoice-icon{
+  margin-left: 10px;
+}
+
+@media (max-width: 960px) {
+  .offer-item {
+    height: 57px;
+    margin-bottom: 5px;
+    padding: 5px;
+    width: calc(100% - 20px);
+  }
+  .offer-item-isactive{
+    margin-left: -5px;
+  }
+
+  .offer-item-price{
+    font-size: 14px;
+    margin-right: -10px;
+  }
+
+  .offer-item-avatar{
+    margin-right: 10px;
+  }
+
+  .offer-item-title{
+    font-size: 17px;
+    font-weight: 600;
+  }
+
+  .offer-item-title-container{
+    min-width: 0;
+    width: 110px;
+  }
+  
+  .offer-item-content-one{
+    margin-top: 2px;
+  }
+
+  .offer-item-content-two{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .offer-item-location{
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    align-items: center;
+    margin-right: 3px;
+    font-size: 12px;
+  }
+
+  .offer-item-content-container{
+    margin-left: 0px;
+  }
+
+  .offer-item-date-wrapper{
+    font-size: 14px;
+  }
+  .tag.new{
+    font-size: 10px;
+    padding: 5px 12px;
+  }
+}

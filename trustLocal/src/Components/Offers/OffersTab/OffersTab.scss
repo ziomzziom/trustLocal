@@ -1,0 +1,132 @@
+.offer-list {
+  background-color: #F0F0F0;
+  align-items: center;
+  display: flex;
+  overflow: auto;
+  height: calc(100vh - 160px);
+  flex-direction: column;
+  width: 100%;
+  transition: background-color 0.3s ease;
+
+  &.dark-mode {
+    transition: background-color 0.3s ease;
+    background-color: var(--color-offerlist-background-dark);
+  }
+}
+
+.invisible-text{
+  color: transparent;
+  font-size: 7px;
+}
+
+.offer-list-tab {
+  padding-left: 15px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+
+  &.dark-mode {
+    background-color: var(--color-background-dark);
+    transition: background-color 0.3s ease;
+  }
+
+  button {
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    background-color: #F0F0F0;
+    transition: background-color 0.3s ease;
+    border-top-left-radius: 30px;
+    padding: 10px 40px;
+    margin-left: 5px;
+    border: none;
+    border-top-right-radius: 30px;
+
+    &.dark-mode {
+      background-color: var(--color-offerlist-background-dark);
+      transition: background-color 0.3s ease;
+    }
+  }
+
+  button:hover {
+    background-color: #ddd;
+    color: #333;
+  }
+
+  .active {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .active:hover {
+    background-color: #0056b3;
+  }
+}
+
+.offer-list-noresult {
+  display: flex;
+  margin-top: 70px;
+  font-weight: bold;
+  color: #1f242a;
+
+  &.dark-mode {
+    color: #e6e6e6;
+  }
+}
+
+.offer-list-noresult-center-content {
+  text-align: center;
+  padding: 20px;
+
+  img {
+    margin-top: 15px;
+  }
+}
+
+.offer-list::-webkit-scrollbar {
+  width: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.offer-list::-webkit-scrollbar-thumb {
+  background-color: #a4a4a4;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.offer-list::-webkit-scrollbar-track {
+  background-color: var(--color-background);
+  transition: background-color 0.3s ease-out;
+}
+
+.offer-list.dark-mode::-webkit-scrollbar-track {
+  background-color: var(--color-offerlist-background-dark);
+  transition: background-color 0.3s ease-out;
+}
+
+.offer-list-end {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  margin: 10px;
+  padding: 8px 25px 8px 25px;
+  border-radius: 25px;
+  background-color: #dee3df;
+  transition: background-color 0.3s ease-out;
+
+  &.dark-mode{
+    background-color: #212425;
+    transition: background-color 0.3s ease-out;
+  }
+
+  .offer-list-end-text {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    color: #3f3d56;
+
+    &.dark-mode{
+      color: #b2b1c3;
+    }
+  }
+}

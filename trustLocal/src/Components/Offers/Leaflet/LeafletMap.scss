@@ -1,0 +1,16 @@
+.leaflet-map {
+    height: calc(100vh - 125px);
+    border-top-left-radius: 30px;
+    background-color: transparent;
+}
+.marker-hover-animation {
+    animation: jump 0.8s ease-in-out 0s infinite normal none running;
+  }
+  
+@media only screen and (max-width: 1000px) {
+    .leaflet-map{
+        height: calc(100vh - 60px);
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+}

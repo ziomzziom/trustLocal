@@ -1,0 +1,115 @@
+.filter-options {
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1);
+
+  &.full-screen {
+    height: calc(100vh - 60px);
+    margin-top: auto;
+  }
+
+  .filter-header {
+    display: flex;
+    padding: 0px 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 10px;
+    background-color: var(--color-offer-background-light);
+    border-bottom: 1px solid #ccc;
+
+    .filter-close-button {
+      &.dark-mode {
+        color: #cacccc;
+      }
+    }
+
+    &.dark-mode {
+      background-color: var(--color-offer-background-dark);
+      color: #cacccc;
+    }
+  }
+
+  .filter-content-button {
+    margin: 5px;
+  }
+
+  .filter-content-input {
+    border-radius: 5px;
+    color: white;
+    border: 1px solid #8f8f8f;
+  }
+
+  .filter-content-date-input-label-dark {
+    color: white;
+  }
+
+  .filter-content {
+    padding: 16px 20px;
+    height: 400px;
+    background-color: white;
+
+    & input {
+      color: #868686;
+    }
+
+    &.dark-mode {
+      background-color: var(--color-offer-background-dark);
+    }
+  }
+
+  .pricerange-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border-radius: 15px;
+
+    &.dark-mode{
+      background-color: var(--color-offer-background-light);
+    }
+  }
+
+  .date-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    padding: 20px;
+    border-radius: 15px;
+    flex-direction: column;
+
+    &.dark-mode{
+      background-color: var(--color-offer-background-light);
+    }
+  }
+  .date-filter-span{
+    font-weight: bold;
+  }
+
+  .invoice-switch {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    padding: 10px;
+
+    .invoice-switch-label {
+      margin-right: 10px;
+    }
+
+    &.dark-mode{
+      color: rgb(211, 211, 211);
+    }
+  }
+
+  .filter-footer {
+    background-color: var(--color-offer-background-light);
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #ccc;
+
+    &.dark-mode {
+      background-color: var(--color-offer-background-dark);
+    }
+  }
+}

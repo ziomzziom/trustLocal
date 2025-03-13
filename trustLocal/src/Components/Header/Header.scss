@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+  --color-primary: #2C3E50;
+  --color-primary-dark: #223041;
+  --color-primary-light: #485E73;
+  --color-secondary: #34495E;
+  --color-secondary-dark: #2A3A4C;
+  --color-secondary-light: #3F576B;
+  --color-ordinary-dark: #242a41;
+  --color-accent: #E74C3C;
+  --color-accent-dark: #CF3C2C;
+  --color-accent-light: #d62512;
+  --color-background: #ececec;
+  --color-background-dark: #222425; // #2c3a50 #232e40 #17191a #222e50
+  --color-background-light: #95AD9C;
+  --color-offerlist-background-dark: #17191a; // #262824 #181c1c #1f1f1f;
+
+  --color-offer-background-dark: #212425; //#333634 #212425 #2c2c2c;
+  --color-offer-background-light: #DEE3DF;
+  --color-tag-background-light: #5a6165;
+  --color-tag-background-dark: #767d81;
+  --color-tag-text-light: #ebebeb;
+  --color-text: #d8d8d8;
+  --color-text-dark: #222222;
+  --color-text-light: #949798;
+}
+
+.header-container {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-background-light);
+  position: relative;
+  z-index: 10;
+  padding: 10px 20px;
+  box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+  font-family: 'Bebas Neue', sans-serif;
+  transition: background-color 0.3s ease;
+
+  &.dark-mode{
+    background-color: var(--color-background-dark);
+    transition: background-color 0.3s ease;
+  }
+}
+
+.header-title.content {
+  display: flex;
+  align-items: center;
+}
+
+.sign-in-button.dark-mode {
+  background-color: var(--color-text-light);
+}
+
+.title-link {
+  text-decoration: none;
+}
+
+.title {
+  font-size: 24px;
+  color: #0D0F0F;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+  &.dark-mode{
+    color: #cacccc;
+  }
+}
+
+.title-text{
+  margin-left: 12px;
+
+  &.dark-mode{
+    color: #7b8185;
+  }
+}
+
+.sign-in-button {
+  margin-right: 5px;
+  background-color: #0D0F0F;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.options-button-icon {
+  color: #0D0F0F;
+
+  &.dark-mode {
+    color: var(--color-text-light);
+    transition: background-color 0.3s ease;
+  }
+}
+
+.notification-icon {
+  color: black;
+
+  &.dark-mode {
+    color: rgb(218, 218, 218);
+  }
+}
+
+.button {
+  font-weight: 100;
+  padding: 8px 16px;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.sign-in-button.active {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+  background-color: var(--color-accent-light);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.LightModeIcon {
+  margin-left: 3px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  color: white;
+}
+
+.DarkModeIcon {
+  margin-bottom: 2px;
+  margin-left: 3px;
+  color: #0e1555;
+}
+
+.switch {
+  position: relative;
+  margin-left: 20px;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-tag-background-dark);
+  transition: .4s;
+  border-radius: 12px;
+}
+
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.switch input:focus + .slider {
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+@media (max-width: 960px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .title-link {
+    margin-left: -10px;
+  }
+
+  .sign-in-button {
+    margin-right: 5px;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  .options-button-link {
+    margin-right: -15px;
+  }
+
+  .LightModeIcon {
+    margin-left: 3px;
+    margin-bottom: 0px;
+    color: white;
+  }
+
+  .DarkModeIcon {
+    margin-bottom: 0px;
+    margin-left: 3px;
+    color: #000107;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    width: 49px;
+    height: 24px;
+  }
+
+  .switch input:checked + .slider:before {
+    transform: translateX(25px);
+  }
+
+  .switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+    border-radius: 13px;
+  }
+
+  .switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    transition: .4s;
+    border-radius: 50%;
+  }
+}

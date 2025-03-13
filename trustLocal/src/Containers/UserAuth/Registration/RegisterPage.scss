@@ -1,0 +1,137 @@
+.register-container {
+  -webkit-transition: background-image 0.2s ease-in-out;
+  transition: background-image 0.2s ease-in-out;
+  background-image: url(../../../Components/Static/wave-haikei-register-light.svg);
+  display: flex;
+  height: calc(100vh - 90px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 0 30px 0;
+  
+  &.dark-mode {
+    background-image: url(../../../Components/Static/wave-haikei-register-dark1.svg);
+  }
+}
+
+.register-title {
+  font-size: 32px;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: var(--color-text-dark);
+
+  &.dark-mode {
+    color: white;
+  }
+}
+
+.register-input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%; 
+}
+
+.register-button {
+  width: 50%;
+  padding: 8px;
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: var(--color-accent-light);
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--color-text-dark);
+  font-weight: bold;
+
+  &.dark-mode {
+    color: white;
+  }
+}
+
+.register-link a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.register-form-input {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid var(--color-primary);
+  background-color: transparent;
+  font-size: 16px;
+  outline: none;
+  width: 150px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: black;
+  flex: 1; /* Allows inputs to stretch when needed */
+  
+  &.dark-mode {
+    color: white;
+  }
+}
+
+.register-form-input::placeholder{
+  letter-spacing: 0.5px;
+  color: var(--color-text-dark);
+}
+
+.register-form-input.dark-mode::placeholder{
+  color: white;
+}
+
+.register-form-input:focus {
+  border-bottom-color: var(--color-accent);
+}
+
+.signin-icon{
+  color: black;
+
+  &.dark-mode{
+    color: #d9dbeb;
+  }
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.country-code-wrapper{
+  display: flex;
+  align-items: center;
+  color: black;
+
+  &.dark-mode{
+    color: white;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .register-container{
+    background-image: url(../../../Components/Static/wave-haikei-register-phone-light.svg);
+    height: calc(100vh - 90px);
+
+    &.dark-mode{
+      background: url(../../../Components/Static/wave-haikei-register-phone-dark.svg);
+    }
+  }
+  .register-form-input {
+    width: 140px;
+  }
+
+  .fingerprint-image-wrapper{
+    display: none;
+  }
+}

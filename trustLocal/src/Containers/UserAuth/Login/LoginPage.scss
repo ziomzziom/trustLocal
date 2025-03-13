@@ -1,0 +1,135 @@
+.login-container {
+  -webkit-transition: background-image 0.2s ease-in-out;
+  transition: background-image 0.2s ease-in-out;
+  background-image: url(../../../Components/Static/wave-haikei-light.svg);
+  display: flex;
+  height: calc(100vh - 60px);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &.dark-mode{
+    background-image: url(../../../Components/Static/wave-haikei-dark.svg);
+  }
+}
+.login-content-container {
+  display: flex;
+}
+
+.login-content {
+  display: flex;
+  padding: 20px 20px 20px 20px;
+}
+
+.fingerprint-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-title {
+  font-size: 38px;
+  white-space: nowrap;
+  font-weight: bold;
+  margin: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: var(--color-text-dark);
+
+  &.dark-mode{
+    color: white;
+  }
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-input {
+  padding: 12px;
+  border: none;
+  width: 260px;
+  border-bottom: 2px solid var(--color-primary);
+  background-color: transparent;
+  font-size: 18px;
+  outline: none;
+  letter-spacing: 1px;
+  color: black;
+  
+  &.dark-mode{
+    color: white;
+  }
+}
+
+.form-input::placeholder{
+  letter-spacing: 1px;
+  color: var(--color-text-dark);
+}
+
+.form-input.dark-mode::placeholder{
+  color: white;
+}
+
+.form-input:focus {
+  border-bottom-color: var(--color-accent);
+}
+
+.form-button {
+  width: 50%;
+  padding: 8px;
+  background-color: var(--color-accent);
+  color: var(--color-background);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: var(--color-accent-light);
+}
+
+.signup-link {
+  margin-top: 20px;
+  color: var(--color-text-dark);
+  font-size: 16px;
+  font-weight: bold;
+
+  &.dark-mode{
+    color: white;
+  }
+}
+
+.signup-link a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.signin-icon{
+  color: black;
+
+  &.dark-mode{
+    color: #d9dbeb;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .login-container{
+    background-image: url(../../../Components/Static/wave-haikei-phone-light.svg);
+    &.dark-mode{
+      background-image: url(../../../Components/Static/wave-haikei-phone-dark.svg);
+      -webkit-transition: background-image 0.2s ease-in-out;
+      transition: background-image 0.2s ease-in-out;
+    }
+  }
+
+  .fingerprint-image-wrapper{
+    display: none;
+  }
+}
