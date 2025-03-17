@@ -10,7 +10,6 @@ const authenticate = require('./middleware/auth');
 
 process.env.SECRET_KEY = 'my_secret_key_1234567890';
 
-// Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/bettercallsaul', { useNewUrlParser: true, useUnifiedTopology: true })
 
   .then(() => {
@@ -20,10 +19,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/bettercallsaul', { useNewUrlParser: 
     console.error('Error connecting to MongoDB:', error);
   });
 
-// Middleware to parse JSON request bodies
 router.use(bodyParser.json());
 
-// API endpoint to handle login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -34,7 +31,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// API endpoint to handle registration
 router.post('/register', async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   try {
@@ -45,7 +41,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// API endpoint to retrieve a list of users
 router.get('/users', authenticate, async (req, res) => {
   try {
     const users = await User.find().exec();
