@@ -20,16 +20,12 @@ import { useDarkMode } from "../../Offers/DarkModeContext";
 import "./CreateOrderForm.scss";
 
 const CreateOfferDialog = ({ open, onClose }) => {
-  // Offer details
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  // Status: for example, Active (1) or Inactive (0)
   const [status, setStatus] = useState(1);
   const [vatInvoice, setVatInvoice] = useState(false);
-  // Contact field for phone number
   const [phoneNumber, setPhoneNumber] = useState("");
-  // Address fields
   const [address, setAddress] = useState({
     street: "",
     city: "",
@@ -79,7 +75,6 @@ const CreateOfferDialog = ({ open, onClose }) => {
       const result = await response.json();
       console.log("Offer created successfully:", result);
 
-      // Reset fields after successful submission
       setTitle("");
       setDescription("");
       setPrice("");

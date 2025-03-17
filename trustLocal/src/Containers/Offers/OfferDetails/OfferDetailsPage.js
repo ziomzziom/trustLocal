@@ -22,9 +22,8 @@ const OfferDetailsPage = () => {
   const [status, setStatus] = useState("loading");
 
   const { isDarkMode } = useDarkMode();
-
   useEffect(() => {
-    fetch(`https://192.168.1.114:3000/api/offers/${id}`)
+    fetch(`http://192.168.1.114:3000/api/offers/getone?id=${id}`)
       .then((response) => response.json())
       .then((data) => {
         setOffer(data);
@@ -45,8 +44,8 @@ const OfferDetailsPage = () => {
 
   return (
     <>
-      <Header activeTab={0} />
-      {!isSmallScreen && <OffersHeader offers={[]} />}
+      <Header activeTab={0} isSmallScreen={isSmallScreen} />
+      {!isSmallScreen && <OffersHeader offers={[]} isDetailsPage={true} />}
       <div className={`details-container ${isDarkMode ? "dark-mode" : ""}`}>
         {status === "loading" ? (
           <div className="loading-container">
@@ -56,7 +55,7 @@ const OfferDetailsPage = () => {
           <div className="left-container">
             {isSmallScreen && showMap ? (
               <Suspense fallback={<div>Loading map...</div>}>
-                <LeafletMap showMap={showMap} />
+                <LeafletMap showMap={showMap} offers={offer ? [offer] : []} />
               </Suspense>
             ) : (
               <OfferDetails
@@ -71,7 +70,7 @@ const OfferDetailsPage = () => {
         {!isSmallScreen && (
           <div className="right-container">
             <Suspense fallback={<div>Loading map...</div>}>
-              <LeafletMap />
+              <LeafletMap offers={offer ? [offer] : []} />
             </Suspense>
           </div>
         )}

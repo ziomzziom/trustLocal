@@ -35,7 +35,7 @@ const OfferItemSmallScreen = ({ offer }) => {
 
   return (
     <Link
-      to={`/offer-details/${offer.id}`}
+      to={`/offer-details/${offer._id}`}
       className={`offer-item ${isDarkMode ? "dark-mode" : ""}`}
     >
       <div className={`offer-item-isactive ${offer.status === 1 ? 'active' : 'inactive'}`}></div>

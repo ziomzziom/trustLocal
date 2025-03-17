@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Button, IconButton, Drawer, Avatar, Snackbar, Alert } from "@mui/material";
+import { Button, IconButton, Drawer, Avatar, Snackbar, SnackbarContent } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import LogoutIcon from "@mui/icons-material/Logout";
+import WarningAmberRoundedIcon from '@mui/icons-material/WarningAmberRounded';
 import { useDarkMode } from "../../Offers/DarkModeContext";
 import { useAuth } from "../../Offers/AuthContext";
 import { Link } from "react-router-dom";
@@ -10,8 +11,12 @@ import "./SideBar.scss";
 
 const Sidebar = ({ open, onClose, onAddNewOfferClick }) => {
   const { isDarkMode } = useDarkMode();
-  const { isAuthenticated, logout, user } = useAuth();
+  const { isAuthenticated, logout, user, loading } = useAuth(); 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  if (loading) {
+    return null; // Or a loading spinner
+  }
 
   const handleLogout = () => {
     setSnackbarOpen(true);
@@ -71,16 +76,23 @@ const Sidebar = ({ open, onClose, onAddNewOfferClick }) => {
                   />
                 </Link>
                 <div className={`sidebar-username-section ${isDarkMode ? "dark-mode" : ""}`}>
-                  <span className="sidebar-username-section-username">{user ? user.firstName : ''} {user ? user.lastName : ''}</span>
-                  <span className="sidebar-username-section-email">{user ? user.email : ''}</span>
+                  <span className="sidebar-username-section-username">
+                    {user?.firstName} {user?.lastName}
+                  </span>
+                  <span className="sidebar-username-section-email">
+                    {user?.email}
+                  </span>
                 </div>
               </div>
             </>
           ) : (
             <></>
           )}
-          <Snackbar open={snackbarOpen} autoHideDuration={1000} onClose={handleCloseSnackbar}>
-            <Alert severity="warning">You have been logged out!</Alert>
+          <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+            <SnackbarContent 
+              message="You have been logged out"
+              action={ <WarningAmberRoundedIcon style={{ color: "orange" }} /> }
+            />
           </Snackbar>
         </div>
       </div>

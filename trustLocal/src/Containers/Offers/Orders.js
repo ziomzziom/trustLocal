@@ -60,11 +60,11 @@ const Orders = () => {
     let apiUrl = `http://192.168.1.114:3000/api/offers/search`;
 
     if (provinceName) {
-      apiUrl += `?province=${provinceName}`;
+      apiUrl += `?provinceName=${provinceName}`;
     }
   
     if (searchQuery) {
-      apiUrl += `${provinceName ? '&' : '?'}query=${searchQuery}`;
+      apiUrl += `${provinceName ? '&' : '?'}searchQuery=${searchQuery}`;
     }
   
     fetch(apiUrl)

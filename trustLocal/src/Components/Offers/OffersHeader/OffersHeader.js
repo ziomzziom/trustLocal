@@ -8,7 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import FilterOptions from "./FilterOptions/FilterOptions";
 import { provinces } from "./provinces";
 
-const OffersHeader = ({ onSearch, fetchData, setNoResults }) => {
+const OffersHeader = ({ onSearch, fetchData, setNoResults, isDetailsPage = false  }) => {
   const [provinceId, setProvinceId] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isFilterOptionsOpen, setIsFilterOptionsOpen] = useState(false);
@@ -34,17 +34,17 @@ const OffersHeader = ({ onSearch, fetchData, setNoResults }) => {
       setSearchButtonHint("Please enter a search query or select a province to search.");
     } else {
       onSearch(searchQuery, provinces.find((province) => province.id === provinceId)?.name);
-      setSearchButtonHint(""); // Clear hint message
+      setSearchButtonHint(""); 
     }
-    setHasSearched(true); // Set hasSearched to true after searching
+    setHasSearched(true); 
   };
   
   const handleCancelSearch = () => {
     setSearchQuery("");
     setProvinceId("");
-    setNoResults(false); // Reset noResults to false
-    fetchData({}); // Call fetchData to retrieve all offers
-    setHasSearched(false); // Reset hasSearched to false
+    setNoResults(false);
+    fetchData({}); 
+    setHasSearched(false); 
   };
 
   return (
@@ -67,6 +67,7 @@ const OffersHeader = ({ onSearch, fetchData, setNoResults }) => {
               }
             }}
             ref={searchQueryRef}
+            disabled={isDetailsPage}
           />
 
           <Autocomplete
@@ -76,6 +77,7 @@ const OffersHeader = ({ onSearch, fetchData, setNoResults }) => {
             getOptionLabel={(option) => option.name}
             value={provinces.find((province) => province.id === provinceId) || null}
             onChange={(e, newValue) => setProvinceId(newValue?.id || "")}
+            disabled={isDetailsPage}
             renderInput={(params) => (
               <TextField
                 {...params}
@@ -102,7 +104,7 @@ const OffersHeader = ({ onSearch, fetchData, setNoResults }) => {
                 variant="outlined"
                 className={`search-button ${isDarkMode ? "dark-mode" : ""}`}
                 title={searchButtonHint}
-                disabled={!searchQuery && !provinceId}
+                disabled={(!searchQuery && !provinceId) || isDetailsPage}
               >
                 {hasSearched ? (
                   <CloseIcon />
@@ -115,12 +117,18 @@ const OffersHeader = ({ onSearch, fetchData, setNoResults }) => {
           onClick={handleOpenFilterOptions}
           className={`tune-button ${isDarkMode ? "dark-mode" : ""} ${isSmallScreen ? "small-screen" : ""}`}
           variant="outlined"
+          disabled={isDetailsPage}
         >
           <TuneIcon className="tune-button-icon" />
           {!isSmallScreen && <span className="tune-button-label">More Filters</span>}
         </IconButton>
       </div>
-      <FilterOptions onClose={handleCloseFilterOptions} isDarkMode={isDarkMode} open={isFilterOptionsOpen} />
+      <FilterOptions 
+        onClose={handleCloseFilterOptions} 
+        isDarkMode={isDarkMode} 
+        open={isFilterOptionsOpen} 
+        disabled={isDetailsPage}
+      />
     </div>
   );
 };

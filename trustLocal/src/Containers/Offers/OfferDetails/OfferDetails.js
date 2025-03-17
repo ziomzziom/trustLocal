@@ -3,6 +3,7 @@ import { Avatar } from "@mui/material";
 import DetailsCancelButton from "./PhoneButtons/DetailsCancelButton";
 import { LocationOn, Schedule, Phone, Email } from "@mui/icons-material";
 import { useMediaQuery, useTheme } from "@mui/material";
+import VerifiedTwoToneIcon from '@mui/icons-material/VerifiedTwoTone';
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
 import LeafletMapPreview from "./PhoneButtons/LeafletMapPreview";
 import "./OfferDetails.scss";
@@ -44,7 +45,9 @@ const OfferDetails = ({ offer, isDarkMode, onMapButtonClick, showMap }) => {
               </Avatar>
             </div>
             <div className="details-header-details">
-              <div className="offer-details-title">{offer.title}</div>
+              <div className="offer-details-title">
+                {offer.title} 
+              </div>
               <div className="text-secondary mt-1">
                 <LocationOn fontSize="small" className="mr-1" />
                 {offer.location?.city}, {offer.location?.province}
@@ -55,6 +58,9 @@ const OfferDetails = ({ offer, isDarkMode, onMapButtonClick, showMap }) => {
                   Faktura VAT
                 </div>
               )}
+              {offer.verified && 
+                <div><VerifiedTwoToneIcon className="verified-icon" /> Verified by Orange</div>
+              }
             </div>
           </div>
 
