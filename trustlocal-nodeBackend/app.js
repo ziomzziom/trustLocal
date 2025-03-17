@@ -4,7 +4,7 @@ require('dotenv').config();
 const { getAccessToken } = require('./auth/getAccessToken');
 const { verifyLocation } = require('./auth/locationVerification');
 const { callLocationApi } = require('./auth/locationRetrieval');
-
+const simSwapController = require('./offers/controllers/simSwapController');
 
 if (!process.env.ORANGE_CLIENT_ID || !process.env.ORANGE_CLIENT_SECRET) {
     console.error('Missing Orange API credentials in .env file');
@@ -27,6 +27,8 @@ const offersRouter = require('./offers/offers');
 
 app.use('/api/auth', authRouter);
 app.use('/api/offers', offersRouter);
+
+app.post('/api/sim-swap/check', simSwapController.checkSimSwap);
 
 app.post('/api/verify-location', async (req, res) => {
     const { phoneNumber, latitude, longitude, radius, maxAge } = req.body;
@@ -53,7 +55,6 @@ app.post('/api/verify-location', async (req, res) => {
             maxAge
         );
 
-        // Handle Orange API response codes
         if (result.status >= 400 || !result.data) {
             return res.status(502).json({ 
                 error: 'Upstream API error',
@@ -61,7 +62,6 @@ app.post('/api/verify-location', async (req, res) => {
             });
         }
 
-        // Safely access verificationResult
         const verificationResult = result.data.verificationResult || 'FALSE';
         const lastLocationTime = result.data.lastLocationTime || null;
         const accuracyRadius = result.data.accuracyRadius || null;

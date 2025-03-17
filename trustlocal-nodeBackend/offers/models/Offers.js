@@ -12,7 +12,7 @@ const offerSchema = new mongoose.Schema({
     latitude: { type: Number },
     longitude: { type: Number },
   },
-  verified: { type: Boolean, default: false }, // New field for verified status
+  verified: { type: Boolean, default: false }, 
   date: { type: Date, required: true },
   time: { type: String, required: true },
   vatInvoice: { type: Boolean, required: true },

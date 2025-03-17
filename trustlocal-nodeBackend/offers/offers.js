@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// Import controller functions from their respective files
 const createController = require('./controllers/create');
 const getController = require('./controllers/get');
 const updateController = require('./controllers/update');
@@ -10,9 +9,9 @@ const deleteController = require('./controllers/delete');
 
 router.post('/create', createController.create);
 router.get('/', getController.getAll);
-router.get('/:id', getController.getOne);
+router.get('/search', searchController.search);  
+router.get('/:id', getController.getOne);      
 router.put('/:id', updateController.update);
-router.get('/search', searchController.search);
 router.delete('/:id', deleteController.deleteOffer);
 
 module.exports = router;
