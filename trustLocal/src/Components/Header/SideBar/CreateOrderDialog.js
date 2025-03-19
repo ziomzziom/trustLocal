@@ -38,10 +38,25 @@ const CreateOfferDialog = ({ open, onClose }) => {
   const { isDarkMode } = useDarkMode();
   const isSmallScreen = window.innerWidth <= 800;
 
+  const formatPhoneNumber = (phone) => {
+    if (!phone) return "";
+    return phone.startsWith("+") ? phone : `+${phone}`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
+
+    const formattedPhoneNumber = formatPhoneNumber(phoneNumber);
+    const isAddressComplete =
+      address.street && address.city && address.postalCode && address.province;
+
+    if (!formattedPhoneNumber && !isAddressComplete) {
+      setError("Either a valid phone number or a complete address is required.");
+      setLoading(false);
+      return;
+    }
 
     const offerPayload = {
       title,
@@ -49,21 +64,16 @@ const CreateOfferDialog = ({ open, onClose }) => {
       vatInvoice,
       price: parseFloat(price),
       status,
-      location: {
-        street: address.street,
-        city: address.city,
-        postalCode: address.postalCode,
-        province: address.province,
-      },
-      phoneNumber,
+      location: isAddressComplete ? address : null,
+      phoneNumber: formattedPhoneNumber || null,
     };
+
+    console.log("Sending Offer Payload:", JSON.stringify(offerPayload, null, 2));
 
     try {
       const response = await fetch("http://localhost:3000/api/offers/create", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(offerPayload),
       });
 

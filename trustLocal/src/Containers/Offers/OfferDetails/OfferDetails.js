@@ -7,8 +7,9 @@ import VerifiedTwoToneIcon from '@mui/icons-material/VerifiedTwoTone';
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
 import LeafletMapPreview from "./PhoneButtons/LeafletMapPreview";
 import "./OfferDetails.scss";
-import { IconButton } from "@mui/material";
-import { Facebook, LinkedIn, Twitter } from "@mui/icons-material";
+import { IconButton, Button } from "@mui/material";
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import { Facebook, LinkedIn, Twitter, LocalPhone } from "@mui/icons-material";
 
 const OfferDetails = ({ offer, isDarkMode, onMapButtonClick, showMap }) => {
   const theme = useTheme();
@@ -44,23 +45,48 @@ const OfferDetails = ({ offer, isDarkMode, onMapButtonClick, showMap }) => {
                 )}
               </Avatar>
             </div>
-            <div className="details-header-details">
-              <div className="offer-details-title">
+            <div className="details-header-details" style={{ 
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '8px',
+              alignItems: 'start'
+            }}>
+              {/* Title - spans full width */}
+              <div className="offer-details-title" style={{ gridColumn: '1 / -1' }}>
                 {offer.title} 
               </div>
-              <div className="text-secondary mt-1">
+
+              {/* Row 1 */}
+              <div className="text-secondary grid-cell">
                 <LocationOn fontSize="small" className="mr-1" />
                 {offer.location?.city}, {offer.location?.province}
               </div>
-              {offer.vatInvoice && (
-                <div className="details-invoice-icon" title="Faktura VAT">
-                  <RequestQuoteOutlinedIcon />
-                  Faktura VAT
-                </div>
-              )}
-              {offer.verified && 
-                <div><VerifiedTwoToneIcon className="verified-icon" /> Verified by Orange</div>
-              }
+              <div className="text-secondary grid-cell">
+                {offer.createdBy?.phoneNumber && (
+                  <div>
+                    <LocalPhone fontSize="small" className="mr-1" />
+                    {offer.createdBy.phoneNumber}
+                  </div>
+                )}
+              </div>
+
+              {/* Row 2 */}
+              <div className="text-secondary grid-cell">
+                {offer.vatInvoice && (
+                  <div className="details-invoice-icon" title="Faktura VAT">
+                    <RequestQuoteOutlinedIcon />
+                    Faktura VAT
+                  </div>
+                )}
+              </div>
+              <div className="text-secondary grid-cell">
+                {offer.verified && 
+                  <div>
+                    <VerifiedTwoToneIcon className="verified-icon" /> 
+                    Verified
+                  </div>
+                }
+              </div>
             </div>
           </div>
 
@@ -112,6 +138,27 @@ const OfferDetails = ({ offer, isDarkMode, onMapButtonClick, showMap }) => {
                 < IconButton>
                   <Twitter fontSize="large" className={`details-media-item ${isDarkMode ? "dark-mode" : ""}`} />
                 </IconButton>
+                <Button
+                  variant="contained"
+                  startIcon={<MessageOutlinedIcon />}
+                  sx={{
+                    background: isDarkMode 
+                      ? 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)' 
+                      : 'linear-gradient(45deg, #4CAF50 30%, #81C784 90%)',
+                    color: 'white',
+                    fontWeight: 'bold',
+                    margin: '8px',
+                    textTransform: 'none',
+                    borderRadius: '20px',
+                    '&:hover': {
+                      background: isDarkMode 
+                        ? 'linear-gradient(45deg, #1976D2 30%, #1E88E5 90%)'
+                        : 'linear-gradient(45deg, #388E3C 30%, #66BB6A 90%)'
+                    }
+                  }}
+                >
+                  Message Me
+                </Button>
               </div>
             </div>
           </div>

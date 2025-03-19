@@ -97,7 +97,15 @@
   }
   
   .text-secondary {
+    display: flex;
     margin-bottom: 8px;
+    align-items: center;
+  }
+
+  .details-invoice-icon{
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
   }
   
   ul {
