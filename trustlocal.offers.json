@@ -1,0 +1,248 @@
+[{
+  "_id": {
+    "$oid": "66d88caedc2229a685b5930a"
+  },
+  "title": "Guitar for Beginners",
+  "location": {
+    "city": "Kętrzyn",
+    "street": "Sikorskiego 66",
+    "postalCode": "10001",
+    "province": "NY"
+  },
+  "coordinates": {
+    "latitude": 54.0830393,
+    "longitude": 21.3567759543268
+  },
+  "date": {
+    "$date": "2023-03-15T00:00:00.000Z"
+  },
+  "time": "14:00",
+  "vatInvoice": true,
+  "createdBy": {
+    "photo": "/assets/images/JohnDoe.jpg"
+  },
+  "price": 47,
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d89c39dc2229a685b5934c"
+  },
+  "title": "Polish Language Tutoring",
+  "location": {
+    "city": "Kętrzyn",
+    "street": "Dębowa",
+    "postalCode": "10001",
+    "province": "NY"
+  },
+  "coordinates": {
+    "latitude": 54.0738551,
+    "longitude": 21.3564006
+  },
+  "date": {
+    "$date": "2023-03-15T00:00:00.000Z"
+  },
+  "time": "14:00",
+  "vatInvoice": true,
+  "createdBy": {
+    "photo": "/assets/images/JohannaDoe.jpg"
+  },
+  "price": 32,
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66d9e2a5ee6360bb13b5e713"
+  },
+  "title": "Home Services",
+  "location": {
+    "city": "Lublin",
+    "street": "Lubartowska 72a",
+    "postalCode": "20-083",
+    "province": "Lubelskie"
+  },
+  "coordinates": {
+    "latitude": 51.2498391,
+    "longitude": 22.5668369
+  },
+  "date": {
+    "$date": "2024-09-05T16:55:26.809Z"
+  },
+  "time": "14:00",
+  "vatInvoice": false,
+  "createdBy": {
+    "photo": "/assets/images/MarcelinaDoe.jpg"
+  },
+  "price": 50,
+  "status": 0,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ced4cac334821c6d1c4e49"
+  },
+  "title": "Guided Meditation",
+  "location": {
+    "city": "Warszawa",
+    "street": "Antoniego Czechowa",
+    "postalCode": "01-912",
+    "province": "Mazowieckie"
+  },
+  "coordinates": {
+    "latitude": 48.8,
+    "longitude": 2.271
+  },
+  "verified": true,
+  "date": {
+    "$date": "2025-03-11T00:00:00.000Z"
+  },
+  "time": "14:00",
+  "vatInvoice": true,
+  "createdBy": {
+    "photo": "/assets/images/MarcinDoe.jpg",
+    "phoneNumber": "+48513915883"
+  },
+  "price": 38,
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67cedfc94a02fd570659d72f"
+  },
+  "title": "French Practice",
+  "location": {
+    "city": "Paris",
+    "street": "123 Rue de Test",
+    "postalCode": "75001",
+    "province": "Île-de-France"
+  },
+  "coordinates": {
+    "latitude": 48.8,
+    "longitude": 2.271
+  },
+  "verified": true,
+  "date": {
+    "$date": "2025-03-11T00:00:00.000Z"
+  },
+  "time": "13:49",
+  "vatInvoice": true,
+  "createdBy": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "price": 40,
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67cee07367050c2192542bb5"
+  },
+  "title": "Creative Workshops",
+  "location": {
+    "city": "Warszawa",
+    "street": "Antoniego Czechowa",
+    "postalCode": "01-912",
+    "province": "Mazowieckie"
+  },
+  "coordinates": {
+    "latitude": 52.282052745619055,
+    "longitude": 20.929285213556437
+  },
+  "verified": false,
+  "date": {
+    "$date": "2025-03-10T12:52:02.080Z"
+  },
+  "time": "13:52",
+  "vatInvoice": true,
+  "createdBy": {
+    "photo": "/assets/images/EdwardDoe.jpg",
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "price": 67,
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d0a4c11532a6791a2c18d6"
+  },
+  "title": "Kids' Art Class",
+  "location": {
+    "city": "Lublin",
+    "street": "Ziemiańska 14",
+    "postalCode": "20-152",
+    "province": "Lubelskie"
+  },
+  "coordinates": {
+    "latitude": 51.2785772,
+    "longitude": 22.57941
+  },
+  "verified": false,
+  "date": {
+    "$date": "2025-03-11T21:01:52.046Z"
+  },
+  "time": "22:01",
+  "vatInvoice": true,
+  "price": 45,
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d827eaa0b28bbff5fd6c15"
+  },
+  "title": "Programming Course",
+  "location": {
+    "city": "Unknown",
+    "street": "Unknown",
+    "postalCode": "00000",
+    "province": "Unknown"
+  },
+  "coordinates": {
+    "latitude": 48.8,
+    "longitude": 2.271
+  },
+  "verified": true,
+  "date": {
+    "$date": "2025-03-17T13:47:21.677Z"
+  },
+  "time": "14:47",
+  "vatInvoice": true,
+  "createdBy": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "price": 100,
+  "status": 1,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67d828837e466129dab50ca7"
+  },
+  "title": "Programming Course",
+  "location": {
+    "city": "Unknown",
+    "street": "Unknown",
+    "postalCode": "00000",
+    "province": "Unknown"
+  },
+  "coordinates": {
+    "latitude": 48.82,
+    "longitude": 2.29
+  },
+  "verified": true,
+  "date": {
+    "$date": "2025-03-17T13:49:54.008Z"
+  },
+  "time": "14:49",
+  "vatInvoice": true,
+  "price": 100,
+  "status": 1,
+  "__v": 0
+}]
