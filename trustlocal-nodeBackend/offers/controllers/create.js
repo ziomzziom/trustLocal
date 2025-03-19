@@ -13,107 +13,137 @@ exports.create = async (req, res) => {
       price,
       status,
       location,
-      phoneNumber
+      phoneNumber 
     } = req.body;
 
-    if (!date) {
-      date = new Date();
-    }
-
-    if (!phoneNumber) {
-      return res.status(400).json({ message: 'Phone number is required for location verification' });
-    }
-
-    if (!location || !location.city || !location.street || !location.postalCode || !location.province) {
-      return res.status(400).json({ message: 'Location is required with city, street, postalCode, and province' });
-    }
-
+    // Set default date and time
+    if (!date) date = new Date();
     if (!time) {
       const now = new Date();
-      time = now.toLocaleTimeString('en-US', {
-        hour12: false,
-        hour: '2-digit',
-        minute: '2-digit'
-      });
+      time = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
     }
 
     let lat, lon;
     let verified = false;
+    let usingPhoneLocation = false;
 
-    // 1. Attempt to retrieve location using /api/retrieve-location
-    try {
-      const retrieveResponse = await axios.post('http://localhost:3000/api/retrieve-location', {
-        phoneNumber,
-        maxAge: 60  // Adjust maxAge as needed
-      });
-      
-      if (
-        retrieveResponse.data &&
-        retrieveResponse.data.area &&
-        retrieveResponse.data.area.areaType === 'CIRCLE' &&
-        retrieveResponse.data.area.center &&
-        retrieveResponse.data.area.center.latitude &&
-        retrieveResponse.data.area.center.longitude
-      ) {
-        lat = retrieveResponse.data.area.center.latitude;
-        lon = retrieveResponse.data.area.center.longitude;
-        console.log('Retrieved location from API:', lat, lon);
+    // 1. Try phone-based location retrieval first if phone number is provided
+    if (phoneNumber) {
+      try {
+        console.log('Attempting phone-based location retrieval for:', phoneNumber);
+        const retrieveResponse = await axios.post('http://localhost:3000/api/retrieve-location', {
+          phoneNumber,
+          maxAge: 60
+        });
+    
+        console.log('Phone location API response:', retrieveResponse.data); // Debugging line
+    
+        if (retrieveResponse.data?.area?.center) {
+          lat = retrieveResponse.data.area.center.latitude;
+          lon = retrieveResponse.data.area.center.longitude;
+          usingPhoneLocation = true;
+          console.log('Using phone-based location:', lat, lon);
+        } else {
+          console.warn('Phone location API did not return valid coordinates.');
+        }
+      } catch (error) {
+        console.error('Phone location retrieval error:', error.message);
       }
-    } catch (error) {
-      console.error('Error retrieving location for phone number:', error.message);
     }
 
-    // 2. If retrieval failed or did not return valid coordinates, fallback to geocoding via Nominatim
+    // 2. Fallback to address geocoding only if phone-based retrieval failed
     if (!lat || !lon) {
-      const { city, street, postalCode } = location;
-      const nominatimUrl = `https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(city)}&street=${encodeURIComponent(street)}&postalcode=${encodeURIComponent(postalCode)}&format=json`;
-      const nominatimResponse = await axios.get(nominatimUrl);
-      const data = nominatimResponse.data;
-      if (!data || data.length === 0) {
-        return res.status(400).json({ message: 'Unable to geocode location using provided address' });
+      if (!location?.city || !location?.street || !location?.postalCode || !location?.province) {
+        return res.status(400).json({
+          message: 'Either valid phone number or complete address required',
+          required: phoneNumber ? [] : ['city', 'street', 'postalCode', 'province']
+        });
       }
-      lat = data[0].lat;
-      lon = data[0].lon;
-      console.log('Geocoded location from Nominatim:', lat, lon);
+
+      try {
+        const { city, street, postalCode } = location;
+        const nominatimUrl = `https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(city)}&street=${encodeURIComponent(street)}&postalcode=${encodeURIComponent(postalCode)}&format=json`;
+        const nominatimResponse = await axios.get(nominatimUrl);
+        const [firstResult] = nominatimResponse.data;
+        
+        if (!firstResult) throw new Error('No geocoding results found');
+        
+        lat = firstResult.lat;
+        lon = firstResult.lon;
+        console.log('Using geocoded address location:', lat, lon);
+      } catch (error) {
+        console.error('Geocoding error:', error.message);
+        return res.status(400).json({ 
+          message: 'Address geocoding failed',
+          details: error.message
+        });
+      }
     }
 
-    // 3. Verify location using /api/verify-location with the obtained coordinates
-    try {
-      const verifyResponse = await axios.post('http://localhost:3000/api/verify-location', {
-        phoneNumber,
-        latitude: lat,
-        longitude: lon,
-        radius: 2000,  // Adjust radius if needed
-        maxAge: 3600   // Adjust maxAge if needed
-      });
-      verified = verifyResponse.data.verification || false;
-      console.log('Verification result:', verified);
-    } catch (verifyError) {
-      console.error('Verification error:', verifyError.message);
+    // 3. Verify location (only if phone number was used)
+    if (usingPhoneLocation) {
+      try {
+        const verifyResponse = await axios.post('http://localhost:3000/api/verify-location', {
+          phoneNumber,
+          latitude: lat,
+          longitude: lon,
+          radius: 2000,
+          maxAge: 3600
+        });
+        verified = verifyResponse.data.verification || false;
+      } catch (verifyError) {
+        console.error('Verification error:', verifyError.message);
+      }
     }
 
-    // 4. Create the offer with the gathered data and verification flag
+    // 4. Ensure location object exists if using phone-based location
+    if (usingPhoneLocation) {
+      location = this._simplifyLocation(location);
+    }
+
+    // 5. Create the offer
     const offer = new Offer({
       title,
       description,
       location,
-      date,     
-      time,      
+      coordinates: { latitude: lat, longitude: lon },
+      date,
+      time,
       vatInvoice,
-      createdBy,
+      createdBy: {
+        ...createdBy,
+        phoneNumber // Include phoneNumber in createdBy
+      },
       price,
       status,
       verified,
-      coordinates: {
-        latitude: lat,
-        longitude: lon
-      }
+      locationSource: usingPhoneLocation ? 'phone' : 'address'
     });
 
     await offer.save();
-    res.status(201).json({ message: 'Offer created successfully', offer });
+    res.status(201).json({ 
+      message: 'Offer created successfully',
+      offer: this._sanitizeOffer(offer)
+    });
+
   } catch (error) {
     console.error('Error creating offer:', error);
-    res.status(500).json({ message: 'Error creating offer', details: error.message });
+    res.status(500).json({ 
+      message: 'Error creating offer',
+      details: error.message
+    });
   }
 };
+
+exports._simplifyLocation = (location) => ({
+  city: location?.city || 'Unknown',
+  street: location?.street || 'Unknown',
+  postalCode: location?.postalCode || '00000',
+  province: location?.province || 'Unknown'
+});
+
+exports._sanitizeOffer = (offer) => ({
+  ...offer._doc,
+  coordinates: undefined, 
+  verified: undefined
+});
